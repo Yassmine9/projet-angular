@@ -1,0 +1,126 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
+h2.nunito {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 38px;
+    text-align: center;
+    color: rgb(87, 157, 180);
+    position: relative;
+    display: inline-block;
+    margin: 40px 40px;
+}
+
+
+h2.nunito::after {
+    content: '';
+    display: block;
+    height: 4px;
+    width: 50%;
+    background-color: #25818bc5;
+    margin: 5px auto 0;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+h2.nunito:hover::after {
+    width: 100%;  /* l'underline s'étend au hover */
+}
+h3.nunito {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;       /* un peu moins que le h2 */
+    font-size: 24px;
+    text-align: center;
+    color: #2c3e50;         /* couleur sombre mais douce */
+    margin: 10px 0;
+}
+p{
+    font-size: 22px;
+    margin: 15px;
+    color: #2b5c63;
+}
+
+.nunito{
+  font-family: "Nunito", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+.Conteneur {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;       
+    align-items: center;       
+    justify-content: center;  
+    padding: 20px;
+    flex-wrap: wrap;  
+    gap: 30px;
+  
+}
+
+.card {
+    width: 300px;
+    height: 300px;
+    background-color: rgba(177, 217, 230, 0.696);
+    border: 3px solid #5ea1c2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-radius: 13px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding-right: 30px;
+    gap: 15px;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+}
+
+.ButtonO, .ButtonS {
+    border: none;
+    color: white;
+    width: 170px;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.ButtonO { background-color: #25818bc5; }
+.ButtonS { background-color: #913535bb; }
+
+.ButtonO:hover { 
+    background-color: #41a7b3c5;
+    transform: translateY(-2px);
+}
+.ButtonS:hover {
+    background-color: #af4e4ebb;
+    transform: translateY(-2px);
+}
+.ButtonA {
+    border: none;
+    color: white;
+    width: 200px;
+    padding: 12px 24px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    background-color: rgb(87, 157, 180);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    margin-left: 70%;
+
+
+
+}
+.ButtonA:hover { 
+    background-color: #41a7b3c5;
+    transform: translateY(-2px);
+}
+.header {
+    text-align: center;
+    margin-bottom: 20px; }
+

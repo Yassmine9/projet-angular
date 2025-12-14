@@ -1,0 +1,44 @@
+.concept-detail-wrapper {
+  display: flex;
+  gap: 50px; 
+  max-width: 1000px;
+  width: 100%;
+}
+
+.containerD{
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 20px;
+}
+
+.concept-info, .drag-zone {
+  flex: 1; 
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: rgba(187, 231, 246, 0.408);
+  border: 3px solid #5ea1c274;
+}
+
+.blocs-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.bloc {
+  padding: 8px 12px;
+  background-color: #82bdc3c5;
+  border-radius: 5px;
+  cursor: grab;
+}
+
+.drag-zone .drop-area {
+  min-height: 200px;
+  border: 2px dashed #aaa;
+  border-radius: 8px;
+  padding: 10px;
+  background-color: #e4f2f3;
+}

@@ -1,0 +1,13 @@
+<h2 class="nunito ">Liste des concepts</h2>
+<div class="header">
+  <button class="ButtonA">Ajouter un concept</button>
+</div>
+<div class="Conteneur">
+  
+<div *ngFor="let c of concepts" class="card">
+  <h3 class="nunito">{{ c.title }}</h3>
+  <p>{{ c.description }}</p>
+  <button [routerLink]="['/concepts', c.id]" class="ButtonO">Ouvrir</button>
+  <button (click)="deleteConcept(c.id)" class="ButtonS">Supprimer</button>
+</div>
+</div>

@@ -1,0 +1,30 @@
+<div class="containerD">
+  <div *ngIf="concept; else notFound" class="concept-detail-wrapper">
+    
+    <!-- Colonne 1 : info du concept -->
+    <div class="concept-info">
+      <h2>{{ concept.title }}</h2>
+      <p>{{ concept.description }}</p>
+
+      <h3 class="blocs-title">Blocs :</h3>
+      <div class="blocs-container">
+        <div *ngFor="let b of concept.blocks" class="bloc">
+          {{ b }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Colonne 2 : zone drag & drop -->
+    <div class="drag-zone">
+      <h3>Assemble ton programme ici :</h3>
+      <div class="drop-area">
+        <!-- blocs à glisser ici -->
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #notFound>
+    <p>Concept non trouvé.</p>
+  </ng-template>
+</div>
