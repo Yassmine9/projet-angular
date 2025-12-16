@@ -37,8 +37,8 @@
 
 .drag-zone .drop-area {
   min-height: 200px;
-  border: 2px dashed #aaa;
+  border: 2px dashed #b6d4db;
   border-radius: 8px;
   padding: 10px;
-  background-color: #e4f2f3;
+  background-color: #cce0e225;
 }

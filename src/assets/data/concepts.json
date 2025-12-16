@@ -1,0 +1,233 @@
+[
+  {
+    "chapterId": 1,
+    "chapterTitle": "Chapitre 1 - Notions de base",
+    "cards": [
+      {
+        "id": 101,
+        "title": "Types primitifs",
+        "description": "Les types primitifs représentent des valeurs simples.",
+        "summary": "Les types primitifs en Java sont utilisés pour stocker des valeurs simples directement en mémoire. Ils ne sont pas des objets et ne possèdent pas de méthodes. Java définit huit types primitifs principaux comme int, double, boolean et char. Ils sont rapides à manipuler et occupent une taille mémoire fixe. Ils sont généralement utilisés pour les calculs, les tests logiques et la manipulation de caractères.",
+        "examples": [
+          {
+            "label": "Déclaration de variables",
+            "blocks": [
+              "int age = 20;",
+              "double moyenne = 14.5;",
+              "boolean actif = true;",
+              "char sexe = 'F';"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 102,
+        "title": "Conditionnel if / else",
+        "description": "Exécution conditionnelle selon une expression booléenne.",
+        "summary": "La structure conditionnelle if / else permet d'exécuter différents blocs d'instructions selon que la condition évaluée est vraie ou fausse. Elle repose sur une expression booléenne. Cette structure est essentielle pour introduire de la logique décisionnelle dans un programme et adapter le comportement du code selon les valeurs manipulées.",
+        "examples": [
+          {
+            "label": "Test de majorité",
+            "blocks": [
+              "int age = 18;",
+              "if (age >= 18) {",
+              "  System.out.println(\"Majeur\");",
+              "} else {",
+              "  System.out.println(\"Mineur\");",
+              "}"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 103,
+        "title": "Boucle for",
+        "description": "Répète un bloc d'instructions.",
+        "summary": "La boucle for est utilisée lorsqu'on connaît à l'avance le nombre d'itérations. Elle se compose d'une initialisation, d'une condition et d'une mise à jour. Elle est très utilisée pour parcourir des tableaux, effectuer des calculs répétitifs ou générer des séquences de valeurs.",
+        "examples": [
+          {
+            "label": "Afficher de 1 à 5",
+            "blocks": [
+              "for (int i = 1; i <= 5; i++) {",
+              "  System.out.println(i);",
+              "}"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": 2,
+    "chapterTitle": "Chapitre 2 - Définition et instanciation des classes",
+    "cards": [
+      {
+        "id": 201,
+        "title": "Définir une classe",
+        "description": "Une classe est un modèle pour créer des objets.",
+        "summary": "Une classe définit la structure et le comportement des objets. Elle regroupe des attributs (données) et des méthodes (actions). En Java, une classe sert de plan de construction pour les objets et permet d'organiser le code selon les principes de la programmation orientée objet.",
+        "examples": [
+          {
+            "label": "Classe Person",
+            "blocks": [
+              "class Person {",
+              "  String nom;",
+              "  int age;",
+              "}"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 202,
+        "title": "Instanciation",
+        "description": "Créer un objet à partir d'une classe.",
+        "summary": "L'instanciation consiste à créer un objet à partir d'une classe à l'aide du mot-clé new. L'objet ainsi créé occupe une zone mémoire et permet d'accéder aux attributs et méthodes définis dans la classe. Chaque objet possède ses propres valeurs.",
+        "examples": [
+          {
+            "label": "Créer un objet",
+            "blocks": [
+              "Person p = new Person();",
+              "p.nom = \"Ali\";",
+              "p.age = 20;"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": 3,
+    "chapterTitle": "Chapitre 3 - Polymorphisme",
+    "cards": [
+      {
+        "id": 301,
+        "title": "Héritage",
+        "description": "Une classe hérite d'une autre.",
+        "summary": "L'héritage permet à une classe fille de récupérer les attributs et méthodes d'une classe mère. Cela favorise la réutilisation du code et l'organisation hiérarchique des classes. En Java, l'héritage se fait avec le mot-clé extends.",
+        "examples": [
+          {
+            "label": "Héritage simple",
+            "blocks": [
+              "class Animal {",
+              "  void parler() {}",
+              "}",
+              "class Chien extends Animal {",
+              "  void parler() {",
+              "    System.out.println(\"Woof\");",
+              "  }",
+              "}"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 302,
+        "title": "Classe abstraite",
+        "description": "Classe non instanciable.",
+        "summary": "Une classe abstraite ne peut pas être instanciée directement. Elle sert de base à d'autres classes et peut contenir des méthodes abstraites sans implémentation. Les classes filles doivent obligatoirement implémenter ces méthodes.",
+        "examples": [
+          {
+            "label": "Classe abstraite",
+            "blocks": [
+              "abstract class Forme {",
+              "  abstract double surface();",
+              "}"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": 4,
+    "chapterTitle": "Chapitre 4 - Exceptions",
+    "cards": [
+      {
+        "id": 401,
+        "title": "Try / Catch",
+        "description": "Gestion des erreurs à l'exécution.",
+        "summary": "Le bloc try / catch permet de gérer les erreurs survenant pendant l'exécution du programme. Le code susceptible de provoquer une exception est placé dans le try, tandis que le catch permet de traiter l'erreur et d'éviter l'arrêt brutal du programme.",
+        "examples": [
+          {
+            "label": "Division par zéro",
+            "blocks": [
+              "try {",
+              "  int x = 10 / 0;",
+              "} catch (ArithmeticException e) {",
+              "  System.out.println(\"Erreur de calcul\");",
+              "}"
+            ]
+          }
+        ]
+      },
+      {
+        "id": 402,
+        "title": "Bloc finally",
+        "description": "Bloc exécuté qu'une exception soit levée ou non.",
+        "summary": "Le bloc finally est exécuté systématiquement après le try / catch. Il est utilisé pour libérer des ressources comme les fichiers ou connexions, garantissant ainsi une exécution correcte quelle que soit l'issue du programme.",
+        "examples": [
+          {
+            "label": "Finally",
+            "blocks": [
+              "try {",
+              "  int x = 10 / 2;",
+              "} catch (Exception e) {",
+              "  System.out.println(\"Erreur\");",
+              "} finally {",
+              "  System.out.println(\"Fin du programme\");",
+              "}"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": 5,
+    "chapterTitle": "Chapitre 5 - Généricité",
+    "cards": [
+      {
+        "id": 501,
+        "title": "Classe générique",
+        "description": "Permet de créer des classes paramétrées par type.",
+        "summary": "Les classes génériques permettent d'écrire du code réutilisable indépendamment du type manipulé. Elles améliorent la sécurité de typage et évitent les conversions explicites. Le type est défini lors de l'instanciation.",
+        "examples": [
+          {
+            "label": "Classe générique",
+            "blocks": [
+              "class Box<T> {",
+              "  T value;",
+              "  void set(T v) { value = v; }",
+              "  T get() { return value; }",
+              "}"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "chapterId": 6,
+    "chapterTitle": "Chapitre 6 - Collections",
+    "cards": [
+      {
+        "id": 601,
+        "title": "List",
+        "description": "Collection ordonnée avec doublons.",
+        "summary": "Une List est une collection ordonnée qui autorise les doublons. Elle permet un accès par indice et conserve l'ordre d'insertion. Les implémentations les plus utilisées sont ArrayList et LinkedList.",
+        "examples": [
+          {
+            "label": "ArrayList",
+            "blocks": [
+              "List<String> noms = new ArrayList<>();",
+              "noms.add(\"Ali\");",
+              "noms.add(\"Sara\");",
+              "System.out.println(noms);"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
+
+/* ===== VARIABLES ===== */
+:root {
+    --primary-color: rgb(87, 157, 180);
+    --primary-dark: #25818bc5;
+    --primary-light: #41a7b3c5;
+    --secondary-color: #2c3e50;
+    --text-color: #2b5c63;
+    --danger-color: #913535bb;
+    --danger-hover: #af4e4ebb;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.1);
+    --shadow-md: 0 10px 20px rgba(0,0,0,0.2);
+    --shadow-lg: 0 15px 35px rgba(0,0,0,0.15);
+}
+
+/* ===== BACKGROUND ===== */
+:host {
+    display: block;
+    min-height: 100vh;
+    position: relative;
+    font-family: 'Nunito', sans-serif;
+}
+
+:host::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: url("/assets/background.jpg") no-repeat center/cover;
+    background-attachment: fixed;
+    z-index: -1;
+    opacity: 0.9;
+}
+
+/* ===== CONTAINER ===== */
+.conteneur {
+    padding: 30px;
+}
+
+/* ===== CHAPTER ===== */
+.chapter {
+   display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 80px;
+}
+
+.chapter-title {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--primary-color);
+    margin-bottom: 35px;
+    position: relative;
+}
+
+.chapter-title::after {
+    content: '';
+    width: 120px;
+    height: 4px;
+    background: var(--primary-dark);
+    display: block;
+    margin-top: 8px;
+    border-radius: 3px;
+}
+
+/* ===== GRID ===== */
+.chapter-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 40px;
+}
+
+/* ===== CARD ===== */
+.card {
+    background: linear-gradient(
+        135deg,
+        rgba(185,223,236,0.85),
+        rgba(120,180,200,0.55)
+    );
+    border-radius: 22px;
+    padding: 28px;
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    transition: 0.35s;
+}
+
+.card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+}
+
+/* ===== CARD DECOR ===== */
+.card::before,
+.card::after {
+    content: '';
+    position: absolute;
+    width: 140px;
+    height: 140px;
+    transform: rotate(45deg);
+    opacity: 0.2;
+}
+
+.card::before {
+    bottom: -40px;
+    left: -40px;
+    background: linear-gradient(135deg, var(--primary-dark), transparent);
+}
+
+.card::after {
+    top: -40px;
+    right: -40px;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+}
+
+/* ===== HEADER ===== */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.card-id {
+    background: var(--primary-dark);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+/* ===== DESCRIPTION ===== */
+.card-description {
+    margin: 15px 0;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+/* ===== EXAMPLES ===== */
+.example {
+    margin-top: 20px;
+}
+
+.example-label {
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.code-block {
+    background: rgba(20,35,45,0.85);
+    color: #e6f1f5;
+    padding: 16px;
+    border-radius: 14px;
+    font-family: monospace;
+    font-size: 14px;
+    overflow-x: auto;
+}
+
+/* ===== FOOTER ===== */
+.card-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    padding: 14px 26px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-details {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+    color: white;
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, var(--danger-color), var(--danger-hover));
+    color: white;
+}
+
+.btn-game {
+    background: linear-gradient(135deg, #3d8bfd, #1e6fd9);
+    color: white;
+    font-weight: 700;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+

@@ -3,7 +3,7 @@ import { appConfig } from './app/app.config';
 import { App } from './app/app';
 import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
-import { RouterModule } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 importProvidersFrom
 import { HttpClientModule} from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
@@ -12,6 +12,6 @@ bootstrapApplication(App, appConfig)
 bootstrapApplication(App, {
   providers: [
     provideRouter(routes),
-    importProvidersFrom( HttpClientModule)
+    provideHttpClient(),
   ]
 });

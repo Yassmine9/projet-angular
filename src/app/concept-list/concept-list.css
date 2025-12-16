@@ -1,126 +1,603 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
-h2.nunito {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 700;
-    font-size: 38px;
-    text-align: center;
-    color: rgb(87, 157, 180);
-    position: relative;
-    display: inline-block;
-    margin: 40px 40px;
+
+:root {
+    --primary-color: rgb(87, 157, 180);
+    --primary-dark: #25818bc5;
+    --primary-light: #41a7b3c5;
+    --secondary-color: #2c3e50;
+    --text-color: #2b5c63;
+    --danger-color: #913535bb;
+    --danger-hover: #af4e4ebb;
+    --card-bg: rgba(177, 217, 230, 0.696);
+    --card-border: #5ea1c2;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 10px 20px rgba(0, 0, 0, 0.2);
+    --shadow-lg: 0 15px 35px rgba(0, 0, 0, 0.15);
+    --border-radius: 13px;
+    --transition-speed: 0.3s;
 }
 
+.conteneur {
+    display: block;
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Nunito', sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
 
-h2.nunito::after {
+.conteneur::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: url("/assets/background.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    z-index: -1;
+    opacity: 0.9;
+}
+
+.nunito {
+    font-family: "Nunito", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+}
+
+p {
+    font-size: clamp(15px, 1.8vw, 18px);
+    margin: 12px 0;
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+.chapter {
+    margin-bottom: 60px;
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+.chapter-title {
+    margin: 40px 0 25px;
+    text-align: left;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: clamp(28px, 4vw, 36px);
+    color: rgba(255, 255, 255, 0.741);
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.chapter-title::after {
     content: '';
     display: block;
+    width: 120px;
     height: 4px;
-    width: 50%;
-    background-color: #25818bc5;
-    margin: 5px auto 0;
-    border-radius: 2px;
-    transition: width 0.3s ease;
+    background: var(--primary-dark);
+    margin-top: 8px;
+    border-radius: 3px;
 }
 
-h2.nunito:hover::after {
-    width: 100%;  /* l'underline s'étend au hover */
-}
-h3.nunito {
-    font-family: 'Nunito', sans-serif;
-    font-weight: 600;       /* un peu moins que le h2 */
-    font-size: 24px;
-    text-align: center;
-    color: #2c3e50;         /* couleur sombre mais douce */
-    margin: 10px 0;
-}
-p{
-    font-size: 22px;
-    margin: 15px;
-    color: #2b5c63;
+.chapter-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
+    gap: 40px;
+    width: 100%;
 }
 
-.nunito{
-  font-family: "Nunito", sans-serif;
-  font-optical-sizing: auto;
-  font-weight: 500;
-  font-style: normal;
+.chapters-container {
+  max-width: 900px;
+  margin: 0 auto;
 }
-.Conteneur {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: row;       
-    align-items: center;       
-    justify-content: center;  
-    padding: 20px;
-    flex-wrap: wrap;  
-    gap: 30px;
-  
-}
-
 .card {
-    width: 300px;
-    height: 300px;
-    background-color: rgba(177, 217, 230, 0.696);
-    border: 3px solid #5ea1c2;
+    width: 100%;
+    min-height: 300px;
+    background: linear-gradient(
+        135deg,
+        rgba(173, 218, 247, 0.9),
+        rgba(120, 180, 200, 0.55)
+    );
+    border: 1.5px solid rgba(94, 161, 194, 0.6);
+    border-radius: 22px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    border-radius: 13px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    padding-right: 30px;
-    gap: 15px;
+    gap: 20px;
+    backdrop-filter: blur(14px);
+    box-shadow: var(--shadow-md);
+    transition: 
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        background 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUpSoft 0.6s ease forwards;
+    box-sizing: border-box;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-dark), transparent);
+    transform: rotate(45deg);
+    opacity: 0.18;
+    z-index: 0;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-dark));
+    transform: rotate(45deg);
+    opacity: 0.25;
+    z-index: 0;
+}
+
+.card > * {
+    position: relative;
+    z-index: 1;
 }
 
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2); 
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-lg);
+    background: linear-gradient(
+        135deg,
+        rgba(200, 235, 245, 0.95),
+        rgba(160, 210, 225, 0.7)
+    );
 }
 
-.ButtonO, .ButtonS {
-    border: none;
-    color: white;
-    width: 170px;
-    padding: 12px 24px;
+
+.card-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 15px;
+    box-sizing: border-box; /* Pour inclure padding */
+}
+
+.card-title-wrapper {
+    flex: 1;
+    min-width: 200px;
+}
+
+.card-title {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--secondary-color);
+    margin: 0;
+    padding: 0;
+}
+
+
+
+.card-description {
     font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    color: var(--text-color);
+    line-height: 1.7;
+    width: 100%;
+    padding: 0 10px; 
+    box-sizing: border-box;
 }
 
-.ButtonO { background-color: #25818bc5; }
-.ButtonS { background-color: #913535bb; }
+.example {
+    width: 100%;
+    margin-top: 15px;
+    padding: 0 10px; 
+    box-sizing: border-box;
+}
 
-.ButtonO:hover { 
-    background-color: #41a7b3c5;
-    transform: translateY(-2px);
+.example-label {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--secondary-color);
+    margin-bottom: 8px;
 }
-.ButtonS:hover {
-    background-color: #af4e4ebb;
-    transform: translateY(-2px);
+
+.code-block {
+    background: rgba(20, 35, 45, 0.85);
+    color: #e6f1f5;
+    border-radius: 14px;
+    padding: 16px;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
+    overflow-x: auto;
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
 }
-.ButtonA {
+
+.code-block code {
+    display: block;
+    margin: 4px 0;
+    white-space: pre;
+}
+
+.card-actions {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0 px;
+    box-sizing: border-box;
+}
+
+.card-footer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 15px 10px 0 10px; /* Padding ajusté */
+    border-top: 1px solid rgba(94, 161, 194, 0.3);
+    box-sizing: border-box;
+    margin-top: auto; /* Pousse le footer vers le bas */
+}
+
+/* Style pour les boutons .btn */
+.btn {
     border: none;
-    color: white;
-    width: 200px;
     padding: 12px 24px;
-    font-size: 18px;
-    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 20px;
     cursor: pointer;
-    background-color: rgb(87, 157, 180);
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    transition: all var(--transition-speed) ease;
     position: relative;
-    margin-left: 70%;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    border: 3px solid transparent;
+    min-width: 120px;
+    box-sizing: border-box;
+}
 
 
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.btn:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+/* Bouton Détails */
+.btn-details {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+    color: white;
+    border-color: rgba(80, 114, 143, 0.6);
+}
+
+.btn-details:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn-delete {
+    background: linear-gradient(135deg, var(--danger-color), var(--danger-hover));
+    color: white;
+    border-color: rgba(143, 80, 80, 0.6);
+}
+
+.btn-delete:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+
+.btn-game {
+    background: rgba(7, 45, 79, 0.433);
+    color: white;
+
+    width: 100%; 
+    max-width: 300px; 
+    position: relative;
 
 }
-.ButtonA:hover { 
-    background-color: #41a7b3c5;
-    transform: translateY(-2px);
-}
-.header {
-    text-align: center;
-    margin-bottom: 20px; }
 
+.btn-game:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    background: linear-gradient(135deg, #092844a9, #04254ece);
+}
+
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeUpSoft {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 1024px) {
+    .chapter-cards {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .conteneur {
+        padding: 15px;
+    }
+    
+    .chapter-cards {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .chapter-title {
+        font-size: 28px;
+        text-align: center;
+    }
+    
+    .chapter-title::after {
+        margin: 8px auto;
+    }
+    
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .card-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    
+    .card-footer {
+        justify-content: flex-start;
+    }
+    
+    .btn {
+        width: 100%;
+        max-width: 200px;
+    }
+    
+    .card {
+        padding: 20px;
+    }
+    
+    .btn-game {
+        width: 100%;
+        max-width: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .conteneur {
+        padding: 10px;
+    }
+    
+    .card {
+        min-height: auto;
+        padding: 18px;
+    }
+    
+    .btn {
+        padding: 10px 20px;
+        font-size: 14px;
+        min-width: 100px;
+    }
+    
+    .card-title {
+        font-size: 18px;
+    }
+}
+
+.page-container {
+    display: flex;
+    min-height: 100vh;
+    position: relative;
+}
+
+
+.sidebar {
+    width: 280px;
+    background: rgba(5, 38, 65, 0.7);
+    backdrop-filter: blur(8px);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.sidebar-title {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chapters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 15px;
+}
+
+.sidebar-chapter {
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar-chapter:hover {
+    background: rgba(51, 65, 85, 0.9);
+    color: white;
+    transform: translateX(5px);
+}
+
+.sidebar-chapter.active {
+    background: 
+    rgba(173, 218, 247, 0.6);
+    color: white;
+    font-weight: 600;
+}
+
+.chapter-number {
+    background: rgba(39, 88, 104, 0.3);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.chapter-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Contenu principal */
+.main-content {
+    flex: 1;
+    overflow-x: hidden;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .sidebar-chapter {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+    }
+}
+
+
+.flip-card {
+  perspective: 1000px;
+}
+
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s ease;
+}
+
+
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+
+.flip-card-front,
+.flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 12px;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+
+.flip-card-front {
+  background: #ffffff0e;
+}
+
+
+.flip-card-back {
+  background: #97bbc844;
+  transform: rotateY(180deg);
+}
+
+.flip-card-back h4 {
+  margin-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.flip-card-back p {
+  font-size: 17px;
+  line-height: 1.5;
+  color: #374151;
+}
