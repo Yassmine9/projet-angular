@@ -1,7 +1,7 @@
 [
   {
     "chapterId": 1,
-    "chapterTitle": "Chapitre 1 - Notions de base",
+    "chapterTitle": " Notions de base",
     "cards": [
       {
         "id": 101,
@@ -59,7 +59,7 @@
   },
   {
     "chapterId": 2,
-    "chapterTitle": "Chapitre 2 - Définition et instanciation des classes",
+    "chapterTitle": " Définition et instanciation des classes",
     "cards": [
       {
         "id": 201,
@@ -98,7 +98,7 @@
   },
   {
     "chapterId": 3,
-    "chapterTitle": "Chapitre 3 - Polymorphisme",
+    "chapterTitle": " Polymorphisme",
     "cards": [
       {
         "id": 301,
@@ -141,7 +141,7 @@
   },
   {
     "chapterId": 4,
-    "chapterTitle": "Chapitre 4 - Exceptions",
+    "chapterTitle": " Exceptions",
     "cards": [
       {
         "id": 401,
@@ -185,7 +185,7 @@
   },
   {
     "chapterId": 5,
-    "chapterTitle": "Chapitre 5 - Généricité",
+    "chapterTitle": "Généricité",
     "cards": [
       {
         "id": 501,
@@ -209,7 +209,7 @@
   },
   {
     "chapterId": 6,
-    "chapterTitle": "Chapitre 6 - Collections",
+    "chapterTitle": " Collections",
     "cards": [
       {
         "id": 601,

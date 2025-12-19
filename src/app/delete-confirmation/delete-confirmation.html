@@ -1,0 +1,11 @@
+<div class="modal" *ngIf="isVisible">
+  <div class="modal-backdrop" (click)="cancel()"></div>
+  <div class="modal-content">
+    <h3>Confirmer la suppression</h3>
+    <p>Êtes-vous sûr de vouloir supprimer ce concept ?</p>
+    <div class="modal-buttons">
+      <button class="btn btn-cancel" (click)="cancel()">Annuler</button>
+      <button class="btn btn-confirm" (click)="confirm()">Supprimer</button>
+    </div>
+  </div>
+</div>

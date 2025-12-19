@@ -4,20 +4,25 @@ import { Observable } from 'rxjs';
 import { ConceptService, Chapter } from '../concept.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { DeleteConfirmation } from '../delete-confirmation/delete-confirmation';
 
 @Component({
   selector: 'app-chapter-list',
   templateUrl: './concept-list.html',
   styleUrls: ['./concept-list.css'],
-  imports: [CommonModule, RouterModule]
+  imports: [CommonModule, RouterModule, DeleteConfirmation]
 })
 export class ConceptList implements OnInit {
 
   chapters$: Observable<Chapter[]>;
   activeChapterId: number | null = null;
 
-  // 🔹 carte actuellement ouverte
+
   expandedCardId: number | null = null;
+
+
+  showDeleteDialog: boolean = false;
+  conceptToDelete: { id: number, chapterId: number } | null = null;
 
   constructor(
     private conceptService: ConceptService,
@@ -46,10 +51,24 @@ export class ConceptList implements OnInit {
 
   // Suppression d'un concept
   deleteConcept(conceptId: number, chapterId: number): void {
-    if (confirm('Êtes-vous sûr de vouloir supprimer ce concept ?')) {
-      this.conceptService.deleteConcept(conceptId);
-      this.conceptService.deleteCardFromChapter(chapterId, conceptId);
+    this.conceptToDelete = { id: conceptId, chapterId: chapterId };
+    this.showDeleteDialog = true;
+  }
+
+  // Confirmer la suppression
+  confirmDelete(): void {
+    if (this.conceptToDelete) {
+      this.conceptService.deleteConcept(this.conceptToDelete.id);
+      this.conceptService.deleteCardFromChapter(this.conceptToDelete.chapterId, this.conceptToDelete.id);
+      this.conceptToDelete = null;
     }
+    this.showDeleteDialog = false;
+  }
+
+  // Annuler la suppression
+  cancelDelete(): void {
+    this.conceptToDelete = null;
+    this.showDeleteDialog = false;
   }
 
   // Scroll vers chapitre

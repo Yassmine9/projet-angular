@@ -72,13 +72,6 @@
 
       <h4>Résumé</h4>
       <p>{{ card.summary }}</p>
-
-      <h4>Exemples</h4>
-      <div *ngFor="let ex of card.examples">
-        <strong>{{ ex.label }}</strong>
-        <pre><code>{{ ex.blocks.join('\n') }}</code></pre>
-      </div>
-
       <button 
         class="btn btn-details"
         (click)="toggleDetails(card.id)">
@@ -94,3 +87,11 @@
 
   </div>
 </div>
+
+<app-delete-confirmation
+  [isVisible]="showDeleteDialog"
+  (confirmed)="confirmDelete()"
+  (cancelled)="cancelDelete()">
+</app-delete-confirmation>
+
+
