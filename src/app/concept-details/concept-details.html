@@ -1,30 +1,49 @@
-<div class="containerD">
+<div class="container-detail">
   <div *ngIf="concept; else notFound" class="concept-detail-wrapper">
     
-    <!-- Colonne 1 : info du concept -->
-    <div class="concept-info">
+    <!-- Header with title and actions -->
+    <div class="detail-header">
       <h2>{{ concept.title }}</h2>
-      <p>{{ concept.description }}</p>
-
-      <h3 class="blocs-title">Blocs :</h3>
-      <div class="blocs-container">
-        <div *ngFor="let b of concept.blocks" class="bloc">
-          {{ b }}
-        </div>
+      <div class="action-buttons">
+        <a [routerLink]="['/game', concept.id]" class="btn btn-play">
+          🎮 Jouer
+        </a>
+        <a [routerLink]="['/edit', concept.id]" class="btn btn-edit">
+          ✏️ Modifier
+        </a>
+        <a routerLink="/concepts" class="btn btn-back">
+          ← Retour
+        </a>
       </div>
     </div>
 
-    <!-- Colonne 2 : zone drag & drop -->
-    <div class="drag-zone">
-      <h3>Assemble ton programme ici :</h3>
-      <div class="drop-area">
-        <!-- blocs à glisser ici -->
+    <!-- Description -->
+    <div class="description-section">
+      <h3>📝 Description</h3>
+      <p>{{ concept.description }}</p>
+    </div>
+
+    <!-- Code blocks -->
+    <div class="blocks-section">
+      <h3>💻 Blocs de code</h3>
+      <div class="blocks-container">
+        <div *ngFor="let block of concept.blocks; let i = index" class="code-block">
+          <span class="block-index">{{ i + 1 }}</span>
+          <code>{{ block }}</code>
+        </div>
       </div>
+      <p class="block-hint">
+        💡 Ces blocs seront mélangés dans le jeu. Tu devras les remettre dans le bon ordre !
+      </p>
     </div>
 
   </div>
 
   <ng-template #notFound>
-    <p>Concept non trouvé.</p>
+    <div class="not-found">
+      <h2>😕 Concept non trouvé</h2>
+      <p>Le concept que tu cherches n'existe pas.</p>
+      <a routerLink="/concepts" class="btn btn-back">← Retour aux concepts</a>
+    </div>
   </ng-template>
 </div>

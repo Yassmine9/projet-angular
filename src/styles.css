@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+/* Global styles - Add this to your src/styles.css file */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background-image: url("/assets/background.jpg");
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* Ensure Angular router outlet doesn't add extra space */
+router-outlet {
+    display: none;
+}
+
+app-root {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+}
+
+/* Remove any default margins/padding from Angular components */
+app-chapter-list {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+}

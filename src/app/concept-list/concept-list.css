@@ -8,6 +8,8 @@
     --text-color: #2b5c63;
     --danger-color: #913535bb;
     --danger-hover: #af4e4ebb;
+    --success-color: #28a745;
+    --success-hover: #218838;
     --card-bg: rgba(177, 217, 230, 0.696);
     --card-border: #5ea1c2;
     --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -17,25 +19,42 @@
     --transition-speed: 0.3s;
 }
 
-.conteneur {
-    display: block;
-    min-height: 100vh;
-    position: relative;
-    overflow: hidden;
-    font-family: 'Nunito', sans-serif;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+/* Fix background to cover entire viewport without voids */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-.conteneur::before {
+html {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Background fixed layer */
+body::before {
     content: "";
     position: fixed;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100vw;
+    height: 100vh;
     background-image: url("/assets/background.jpg");
     background-size: cover;
+    background-position: center center;
     background-repeat: no-repeat;
-    background-attachment: fixed;
     z-index: -1;
     opacity: 0.9;
 }
@@ -54,20 +73,153 @@ p {
     line-height: 1.8;
 }
 
+/* Page container with sidebar */
+.page-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100vw;
+    position: relative;
+    font-family: 'Nunito', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 280px;
+    background: rgba(5, 38, 65, 0.85);
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.15);
+    padding: 20px 0;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    z-index: 100;
+    box-shadow: 5px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-header {
+    padding: 0 20px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.sidebar-title {
+    color: white;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.sidebar-icon {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+.practice-icon {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+    margin-right: 5px;
+}
+
+.chapters-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 15px;
+}
+
+.sidebar-chapter {
+    background: transparent;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 15px;
+    color: rgba(255, 255, 255, 0.8);
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.sidebar-chapter:hover {
+    background: rgba(51, 65, 85, 0.9);
+    color: white;
+    transform: translateX(5px);
+}
+
+.sidebar-chapter.active {
+    background: rgba(173, 218, 247, 0.6);
+    color: white;
+    font-weight: 600;
+}
+
+.chapter-number {
+    background: rgba(39, 88, 104, 0.5);
+    color: white;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+.chapter-name {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Main content area */
+.main-content {
+    flex: 1;
+    margin-left: 280px;
+    padding: 40px;
+    min-height: 100vh;
+    width: calc(100% - 280px);
+    box-sizing: border-box;
+}
+
+.chapters-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Chapter sections */
 .chapter {
-    margin-bottom: 60px;
+    margin-bottom: 80px;
     animation: fadeInUp 0.6s ease forwards;
+    scroll-margin-top: 40px;
 }
 
 .chapter-title {
-    margin: 40px 0 25px;
+    margin: 0 0 40px 0;
     text-align: left;
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
-    font-size: clamp(28px, 4vw, 36px);
-    color: rgba(255, 255, 255, 0.741);
+    font-size: clamp(32px, 4vw, 42px);
+    color: rgba(255, 255, 255, 0.95);
     position: relative;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .chapter-title::after {
@@ -76,36 +228,117 @@ p {
     width: 120px;
     height: 4px;
     background: var(--primary-dark);
-    margin-top: 8px;
+    margin-top: 12px;
     border-radius: 3px;
 }
 
+/* Cards grid - bigger cards */
 .chapter-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(420px, 1fr));
-    gap: 40px;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 35px;
     width: 100%;
 }
 
-.chapters-container {
-  max-width: 900px;
-  margin: 0 auto;
-}
-.card {
+/* Add concept card - special card for adding new concepts */
+.add-concept-card {
     width: 100%;
-    min-height: 300px;
+    min-height: 380px;
     background: linear-gradient(
         135deg,
-        rgba(173, 218, 247, 0.9),
-        rgba(120, 180, 200, 0.55)
+        rgba(173, 218, 247, 0.5),
+        rgba(120, 180, 200, 0.3)
     );
-    border: 1.5px solid rgba(94, 161, 194, 0.6);
-    border-radius: 22px;
-    padding: 25px;
+    border: 3px dashed rgba(94, 161, 194, 0.6);
+    border-radius: 24px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    backdrop-filter: blur(10px);
+    cursor: pointer;
+    transition: all 0.35s ease;
+    position: relative;
+    overflow: hidden;
+    animation: fadeUpSoft 0.6s ease forwards;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.add-concept-card:hover {
+    border-color: var(--primary-dark);
+    background: linear-gradient(
+        135deg,
+        rgba(200, 235, 245, 0.7),
+        rgba(160, 210, 225, 0.5)
+    );
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.add-concept-icon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.add-concept-card:hover .add-concept-icon {
+    transform: rotate(90deg) scale(1.1);
+}
+
+.add-concept-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    color: #ffff;
+}
+
+.add-concept-title {
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--secondary-color);
+    margin: 0;
+}
+
+.add-concept-description {
+    font-size: 16px;
+    color: var(--text-color);
+    margin: 0;
+}
+
+.add-concept-description strong {
+    color: var(--primary-dark);
+    font-weight: 700;
+}
+
+/* Card styling - bigger and better organized */
+.card {
+    width: 100%;
+    min-height: 380px;
+    background: linear-gradient(
+        135deg,
+        rgba(173, 218, 247, 0.92),
+        rgba(120, 180, 200, 0.65)
+    );
+    border: 2px solid rgba(94, 161, 194, 0.7);
+    border-radius: 24px;
+    padding: 30px;
     display: flex;
     flex-direction: column;
     gap: 20px;
-    backdrop-filter: blur(14px);
+    backdrop-filter: blur(16px);
     box-shadow: var(--shadow-md);
     transition: 
         transform 0.35s ease,
@@ -158,61 +391,56 @@ p {
     );
 }
 
-
 .card-header {
     width: 100%;
     display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 15px;
-    box-sizing: border-box; /* Pour inclure padding */
+    flex-direction: column;
+    gap: 18px;
+    box-sizing: border-box;
 }
 
 .card-title-wrapper {
-    flex: 1;
-    min-width: 200px;
+    width: 100%;
 }
 
 .card-title {
     font-family: 'Nunito', sans-serif;
     font-weight: 700;
-    font-size: 22px;
+    font-size: 24px;
     color: var(--secondary-color);
-    margin: 0;
+    margin: 0 0 15px 0;
     padding: 0;
 }
 
-
-
 .card-description {
-    font-size: 16px;
+    font-size: 17px;
     color: var(--text-color);
-    line-height: 1.7;
+    line-height: 1.8;
     width: 100%;
-    padding: 0 10px; 
+    padding: 0;
     box-sizing: border-box;
+    margin: 10px 0;
 }
 
 .example {
     width: 100%;
     margin-top: 15px;
-    padding: 0 10px; 
+    padding: 0;
     box-sizing: border-box;
 }
 
 .example-label {
-    font-size: 15px;
+    font-size: 16px;
     font-weight: 700;
     color: var(--secondary-color);
     margin-bottom: 8px;
 }
 
 .code-block {
-    background: rgba(20, 35, 45, 0.85);
+    background: rgba(20, 35, 45, 0.9);
     color: #e6f1f5;
     border-radius: 14px;
-    padding: 16px;
+    padding: 18px;
     font-family: 'Courier New', monospace;
     font-size: 14px;
     box-shadow: inset 0 0 10px rgba(0,0,0,0.3);
@@ -228,12 +456,13 @@ p {
     white-space: pre;
 }
 
+/* Button actions - all on same level */
 .card-actions {
     display: flex;
     gap: 12px;
     align-items: center;
     flex-wrap: wrap;
-    padding: 0 px;
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -241,13 +470,13 @@ p {
     width: 100%;
     display: flex;
     justify-content: center;
-    padding: 15px 10px 0 10px; /* Padding ajusté */
-    border-top: 1px solid rgba(94, 161, 194, 0.3);
+    padding: 20px 0 0 0;
+    border-top: 1px solid rgba(94, 161, 194, 0.35);
     box-sizing: border-box;
-    margin-top: auto; /* Pousse le footer vers le bas */
+    margin-top: auto;
 }
 
-/* Style pour les boutons .btn */
+/* Base button style */
 .btn {
     border: none;
     padding: 12px 24px;
@@ -269,7 +498,6 @@ p {
     box-sizing: border-box;
 }
 
-
 .btn::before {
     content: '';
     position: absolute;
@@ -288,7 +516,7 @@ p {
     height: 300px;
 }
 
-/* Bouton Détails */
+/* Details button */
 .btn-details {
     background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
     color: white;
@@ -300,6 +528,7 @@ p {
     box-shadow: var(--shadow-md);
 }
 
+/* Delete button */
 .btn-delete {
     background: linear-gradient(135deg, var(--danger-color), var(--danger-hover));
     color: white;
@@ -311,15 +540,27 @@ p {
     box-shadow: var(--shadow-md);
 }
 
-
-.btn-game {
-    background: rgba(7, 45, 79, 0.433);
+/* Modifier button - GREEN */
+.btn-edit {
+    background: linear-gradient(135deg, var(--success-color), var(--success-hover));
     color: white;
+    border-color: rgba(40, 167, 69, 0.6);
+}
 
-    width: 100%; 
-    max-width: 300px; 
+.btn-edit:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* Practice button */
+.btn-game {
+    background: rgba(7, 45, 79, 0.5);
+    color: white;
+    width: 100%;
+    max-width: 350px;
     position: relative;
-
+    padding: 14px 28px;
+    font-size: 16px;
 }
 
 .btn-game:hover {
@@ -328,7 +569,77 @@ p {
     background: linear-gradient(135deg, #092844a9, #04254ece);
 }
 
+/* Flip card functionality */
+.flip-card {
+    perspective: 1000px;
+}
 
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 380px;
+    transform-style: preserve-3d;
+    transition: transform 0.6s ease;
+}
+
+.flip-card.flipped .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 24px;
+    padding: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.flip-card-front {
+    background: transparent;
+}
+
+.flip-card-back {
+    background: rgba(151, 187, 200, 0.3);
+    transform: rotateY(180deg);
+    overflow-y: auto;
+}
+
+.flip-card-back h4 {
+    margin-bottom: 12px;
+    margin-top: 15px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--secondary-color);
+}
+
+.flip-card-back p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+    margin-bottom: 15px;
+}
+
+.flip-card-back pre {
+    background: rgba(20, 35, 45, 0.9);
+    padding: 12px;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 8px 0;
+}
+
+.flip-card-back code {
+    color: #e6f1f5;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+/* Animations */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -351,21 +662,68 @@ p {
     }
 }
 
-@media (max-width: 1024px) {
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Responsive design */
+@media (max-width: 1400px) {
     .chapter-cards {
-        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    }
+}
+
+@media (max-width: 1200px) {
+    .sidebar {
+        width: 240px;
+    }
+    
+    .main-content {
+        margin-left: 240px;
+        width: calc(100% - 240px);
+        padding: 30px;
+    }
+    
+    .chapter-cards {
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
         gap: 30px;
     }
 }
 
-@media (max-width: 768px) {
-    .conteneur {
-        padding: 15px;
-    }
-    
+@media (max-width: 1024px) {
     .chapter-cards {
         grid-template-columns: 1fr;
-        gap: 25px;
+        gap: 30px;
+    }
+    
+    .sidebar {
+        width: 220px;
+    }
+    
+    .main-content {
+        margin-left: 220px;
+        width: calc(100% - 220px);
+    }
+}
+
+@media (max-width: 768px) {
+    .page-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        position: relative;
+        width: 100%;
+        height: auto;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 20px;
     }
     
     .chapter-title {
@@ -374,230 +732,44 @@ p {
     }
     
     .chapter-title::after {
-        margin: 8px auto;
-    }
-    
-    .card-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
+        margin: 12px auto;
     }
     
     .card-actions {
-        width: 100%;
-        justify-content: flex-start;
-    }
-    
-    .card-footer {
-        justify-content: flex-start;
+        flex-direction: column;
+        align-items: stretch;
     }
     
     .btn {
         width: 100%;
-        max-width: 200px;
     }
     
     .card {
-        padding: 20px;
-    }
-    
-    .btn-game {
-        width: 100%;
-        max-width: none;
+        padding: 25px;
+        min-height: 350px;
     }
 }
 
 @media (max-width: 480px) {
-    .conteneur {
-        padding: 10px;
+    .main-content {
+        padding: 15px;
     }
     
     .card {
         min-height: auto;
-        padding: 18px;
+        padding: 20px;
     }
     
     .btn {
         padding: 10px 20px;
         font-size: 14px;
-        min-width: 100px;
     }
     
     .card-title {
-        font-size: 18px;
-    }
-}
-
-.page-container {
-    display: flex;
-    min-height: 100vh;
-    position: relative;
-}
-
-
-.sidebar {
-    width: 280px;
-    background: rgba(5, 38, 65, 0.7);
-    backdrop-filter: blur(8px);
-    border-right: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 20px 0;
-    position: sticky;
-    top: 0;
-    height: 100vh;
-    overflow-y: auto;
-    z-index: 100;
-    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0;
-}
-
-.sidebar-header {
-    padding: 0 20px 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
-}
-
-.sidebar-title {
-    color: white;
-    font-family: 'Nunito', sans-serif;
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.chapters-list {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 0 15px;
-}
-
-.sidebar-chapter {
-    background: transparent;
-    border: none;
-    border-radius: 10px;
-    padding: 12px 15px;
-    color: rgba(255, 255, 255, 0.8);
-    font-family: 'Nunito', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    text-align: left;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.sidebar-chapter:hover {
-    background: rgba(51, 65, 85, 0.9);
-    color: white;
-    transform: translateX(5px);
-}
-
-.sidebar-chapter.active {
-    background: 
-    rgba(173, 218, 247, 0.6);
-    color: white;
-    font-weight: 600;
-}
-
-.chapter-number {
-    background: rgba(39, 88, 104, 0.3);
-    color: white;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    font-weight: 600;
-    flex-shrink: 0;
-}
-
-.chapter-name {
-    flex: 1;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Contenu principal */
-.main-content {
-    flex: 1;
-    overflow-x: hidden;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-
-@media (max-width: 1024px) {
-    .sidebar {
-        width: 240px;
+        font-size: 20px;
     }
     
-    .sidebar-chapter {
-        padding: 10px 12px;
-        font-size: 0.95rem;
+    .chapter-cards {
+        gap: 20px;
     }
-}
-
-
-.flip-card {
-  perspective: 1000px;
-}
-
-
-.flip-card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  min-height: 220px;
-  transform-style: preserve-3d;
-  transition: transform 0.6s ease;
-}
-
-
-.flip-card.flipped .flip-card-inner {
-  transform: rotateY(180deg);
-}
-
-
-.flip-card-front,
-.flip-card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  border-radius: 12px;
-  padding: 16px;
-  box-sizing: border-box;
-}
-
-
-.flip-card-front {
-  background: #ffffff0e;
-}
-
-
-.flip-card-back {
-  background: #97bbc844;
-  transform: rotateY(180deg);
-}
-
-.flip-card-back h4 {
-  margin-bottom: 8px;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-.flip-card-back p {
-  font-size: 17px;
-  line-height: 1.5;
-  color: #374151;
 }

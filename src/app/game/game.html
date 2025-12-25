@@ -1,1 +1,170 @@
-<p>game works!</p>
+<div class="game-container" *ngIf="concept">
+  <!-- Header with Stats -->
+  <div class="game-header">
+    <h2>🎮 Jeu : {{ concept.title }}</h2>
+    <p>{{ concept.description }}</p>
+    <p class="instructions">
+      👉 Glisse les blocs de code dans l'ordre correct pour assembler le programme !
+    </p>
+    
+    <!-- Game Stats -->
+    <div class="game-stats">
+      <div class="stat">
+        <span class="stat-label">Progression</span>
+        <div class="progress-bar">
+          <div class="progress-fill" [style.width.%]="progress"></div>
+        </div>
+        <span class="stat-value">{{ progress }}%</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Tentatives</span>
+        <span class="stat-value">{{ attempts }}</span>
+      </div>
+      <div class="stat">
+        <span class="stat-label">Blocs restants</span>
+        <span class="stat-value">{{ shuffledBlocks.length }}</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="game-layout">
+    <!-- LEFT PANEL: Available Blocks -->
+    <div class="panel source-panel">
+      <h3>📦 Blocs disponibles</h3>
+      
+      <div
+        cdkDropList
+        #sourceList="cdkDropList"
+        [cdkDropListData]="shuffledBlocks"
+        [cdkDropListConnectedTo]="[targetList]"
+        (cdkDropListDropped)="drop($event)"
+        class="drop-list"
+      >
+        <div
+          class="block source-block"
+          *ngFor="let block of shuffledBlocks"
+          cdkDrag
+        >
+          <span class="drag-icon">⋮⋮</span>
+          <code>{{ block }}</code>
+        </div>
+        
+        <div *ngIf="shuffledBlocks.length === 0" class="empty-state">
+          <div class="success-icon">✓</div>
+          <p>Tous les blocs sont utilisés !</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT PANEL: Assembly Area -->
+    <div class="panel target-panel">
+      <h3>🎯 Zone d'assemblage</h3>
+      
+      <div
+        cdkDropList
+        #targetList="cdkDropList"
+        [cdkDropListData]="assembledBlocks"
+        [cdkDropListConnectedTo]="[sourceList]"
+        (cdkDropListDropped)="drop($event)"
+        class="drop-list target-area"
+        [class.complete]="isComplete"
+      >
+        <div
+          class="block target-block"
+          [class.correct-position]="isBlockCorrect(i) && showFeedback"
+          [class.wrong-position]="!isBlockCorrect(i) && showFeedback && isComplete"
+          *ngFor="let block of assembledBlocks; let i = index"
+          cdkDrag
+        >
+          <span class="block-number">{{ i + 1 }}</span>
+          <code>{{ block }}</code>
+          <span class="drag-icon">⋮⋮</span>
+          <span *ngIf="isBlockCorrect(i) && showFeedback" class="check-icon">✓</span>
+          <span *ngIf="!isBlockCorrect(i) && showFeedback && isComplete" class="cross-icon">✗</span>
+        </div>
+        
+        <div *ngIf="assembledBlocks.length === 0" class="empty-placeholder">
+          <div class="placeholder-icon">👆</div>
+          <p>Glisse les blocs ici</p>
+          <p class="placeholder-hint">Commence par le premier bloc du programme</p>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="button-group">
+        <button 
+          class="btn btn-verify" 
+          (click)="verifyOrder()"
+          [disabled]="!canVerify"
+          [class.pulse]="canVerify && !showFeedback"
+        >
+          <span class="btn-icon">✓</span> Vérifier
+        </button>
+        <button 
+          class="btn btn-hint" 
+          (click)="toggleHint()"
+          [disabled]="isCorrect"
+        >
+          <span class="btn-icon">💡</span> Indice
+        </button>
+        <button 
+          class="btn btn-solution" 
+          (click)="showSolution()"
+          [disabled]="isCorrect"
+        >
+          <span class="btn-icon">👁️</span> Solution
+        </button>
+        <button 
+          class="btn btn-reset" 
+          (click)="resetGame()"
+        >
+          <span class="btn-icon">🔄</span> Réinitialiser
+        </button>
+      </div>
+      
+      <!-- Hint Message -->
+      <div *ngIf="showHint && !isCorrect" class="hint-box">
+        <p>{{ getHintMessage() }}</p>
+      </div>
+
+      <!-- Feedback Messages -->
+      <div *ngIf="showFeedback" class="feedback-container">
+        <div *ngIf="isCorrect" class="feedback success">
+          <div class="feedback-icon">🎉</div>
+          <h3>Bravo !</h3>
+          <p>Tu as correctement assemblé le programme en {{ attempts }} tentative(s) !</p>
+          <div class="success-actions">
+            <a [routerLink]="['/concepts', concept.id]" class="btn-link">Voir le concept</a>
+            <a routerLink="/concepts" class="btn-link">Autres concepts</a>
+          </div>
+        </div>
+        
+        <div *ngIf="!isCorrect && isComplete" class="feedback error">
+          <div class="feedback-icon">❌</div>
+          <h3>Pas tout à fait...</h3>
+          <p>L'ordre n'est pas correct. Les blocs incorrects sont marqués en rouge.</p>
+          <p class="feedback-tip">💡 Astuce : Vérifie l'ordre logique du programme Java</p>
+        </div>
+        
+        <div *ngIf="!isCorrect && !isComplete" class="feedback warning">
+          <div class="feedback-icon">⚠️</div>
+          <h3>Attention !</h3>
+          <p>Il manque encore {{ correctBlocks.length - assembledBlocks.length }} bloc(s).</p>
+          <p class="feedback-tip">Continue d'ajouter les blocs manquants !</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Back Button (Bottom) -->
+  <div class="bottom-actions">
+    <a [routerLink]="['/concepts', concept.id]" class="btn btn-back-large">
+      ← Retour au concept
+    </a>
+  </div>
+</div>
+
+<div *ngIf="!concept" class="loading">
+  <div class="spinner"></div>
+  <p>Chargement du jeu...</p>
+</div>
