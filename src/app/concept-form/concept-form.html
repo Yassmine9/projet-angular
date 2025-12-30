@@ -1,0 +1,81 @@
+<div class="form-page">
+  <div class="form-container">
+   <h2 class="form-title">
+  <img 
+    [src]="isEdit 
+      ? 'assets/form.png' 
+      : 'assets/form.png'" 
+    alt="Concept icon" />
+  {{ isEdit ? 'Modifier Concept' : 'Ajouter Concept' }}
+</h2>
+
+
+    <form (ngSubmit)="save()">
+      
+      <!-- Titre -->
+      <div class="form-group">
+        <label for="title">Titre du concept</label>
+        <input 
+          type="text"
+          id="title"
+          [(ngModel)]="concept.title" 
+          name="title" 
+          placeholder="Ex: Boucle while"
+          required />
+        <span class="helper-text">Donnez un nom clair à votre concept</span>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea 
+          id="description"
+          [(ngModel)]="concept.description" 
+          name="description"
+          placeholder="Décrivez brièvement ce concept..."
+          required></textarea>
+        <span class="helper-text">Expliquez en quelques phrases ce qu'est ce concept</span>
+      </div>
+
+      <!-- Blocs de code -->
+      <div class="form-group">
+        <div class="blocks-header">
+          <label>Blocs de code</label>
+          <button type="button" class="btn btn-success" (click)="addBlock()">
+            + Ajouter un bloc
+          </button>
+        </div>
+
+        <div class="blocks-section">
+          <div *ngFor="let block of concept.blocks; let i = index" class="block-item">
+            <input 
+              type="text"
+              [(ngModel)]="concept.blocks[i]" 
+              name="block{{i}}"
+              placeholder="Ex: for (int i = 0; i < 10; i++)" />
+            <button 
+              type="button" 
+              class="btn btn-danger" 
+              (click)="removeBlock(i)"
+              [disabled]="concept.blocks.length === 1">
+              🗑️ Supprimer
+            </button>
+          </div>
+        </div>
+        <span class="helper-text">Ajoutez des exemples de code ligne par ligne</span>
+      </div>
+
+      <!-- Boutons d'action -->
+      <div class="button-group">
+        <button type="submit" class="btn btn-primary">
+          {{ isEdit ? ' Enregistrer les modifications' : ' Créer le concept' }}
+        </button>
+        <button type="button" class="btn btn-secondary" (click)="cancel()">
+           Annuler
+        </button>
+      </div>
+
+    </form>
+
+  </div>
+</div>

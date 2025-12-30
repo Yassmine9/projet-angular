@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, ActivatedRoute } from '@angular/router';
-import { ConceptService, Concept } from '../concept.service';
+import { ConceptService, Concept } from '../services/concept.service';
 
 @Component({
   selector: 'app-concept-detail',

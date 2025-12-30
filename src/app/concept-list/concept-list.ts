@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ConceptService, Chapter } from '../concept.service';
+import { ConceptService, Chapter } from '../services/concept.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { DeleteConfirmation } from '../delete-confirmation/delete-confirmation';
@@ -10,14 +10,24 @@ import { DeleteConfirmation } from '../delete-confirmation/delete-confirmation';
   selector: 'app-chapter-list',
   templateUrl: './concept-list.html',
   styleUrls: ['./concept-list.css'],
+<<<<<<< HEAD
   imports: [CommonModule, RouterModule, DeleteConfirmation]
+=======
+  standalone: true,
+  imports: [CommonModule, RouterModule]
+>>>>>>> origin/yasmine
 })
 export class ConceptList implements OnInit {
 
   chapters$: Observable<Chapter[]>;
+  allChapters: Chapter[] = [];
+  filteredChapters: Chapter[] = [];
   activeChapterId: number | null = null;
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> origin/yasmine
   expandedCardId: number | null = null;
 
 
@@ -32,24 +42,25 @@ export class ConceptList implements OnInit {
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.setupScrollObserver();
-    }, 500);
+    // Load all chapters and automatically select the first one
+    this.chapters$.subscribe(chapters => {
+      this.allChapters = chapters;
+      
+      // Automatically show first chapter on load
+      if (chapters.length > 0) {
+        this.filterChapter(chapters[0].chapterId);
+      }
+    });
   }
 
-  // 🔁 Ouvrir / fermer les détails d’une carte
   toggleDetails(cardId: number): void {
-    this.expandedCardId =
-      this.expandedCardId === cardId ? null : cardId;
+    this.expandedCardId = this.expandedCardId === cardId ? null : cardId;
   }
 
-  // Navigation vers le jeu
- goToGame(conceptId: number): void {
-  this.router.navigate(['/concepts', conceptId]);
-}
+  goToGame(conceptId: number): void {
+    this.router.navigate(['/concepts', conceptId]);
+  }
 
-
-  // Suppression d'un concept
   deleteConcept(conceptId: number, chapterId: number): void {
     this.conceptToDelete = { id: conceptId, chapterId: chapterId };
     this.showDeleteDialog = true;
@@ -71,35 +82,23 @@ export class ConceptList implements OnInit {
     this.showDeleteDialog = false;
   }
 
-  // Scroll vers chapitre
-  scrollToChapter(chapterId: number): void {
-    const element = document.getElementById(`chapter-${chapterId}`);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      this.activeChapterId = chapterId;
-    }
+  editConcept(conceptId: number): void {
+    this.router.navigate(['/edit', conceptId]);
   }
 
-  // Observer scroll
-  private setupScrollObserver(): void {
-    const chapters = document.querySelectorAll('.chapter');
-    if (chapters.length === 0) return;
-
-    const observer = new IntersectionObserver(
-      entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id.replace('chapter-', '');
-            this.activeChapterId = parseInt(id, 10);
-          }
-        });
-      },
-      {
-        rootMargin: '-50% 0px -50% 0px',
-        threshold: 0
-      }
+  // Filter to show only one chapter
+  filterChapter(chapterId: number): void {
+    this.activeChapterId = chapterId;
+    
+    // Filter to show only the selected chapter
+    this.filteredChapters = this.allChapters.filter(
+      chapter => chapter.chapterId === chapterId
     );
-
-    chapters.forEach(chapter => observer.observe(chapter));
+    
+    // Scroll to top of main content smoothly
+    const mainContent = document.querySelector('.main-content');
+    if (mainContent) {
+      mainContent.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   }
 }
