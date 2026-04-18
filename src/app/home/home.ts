@@ -1,11 +1,12 @@
 import { Component, OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { Observable } from 'rxjs';
-import { ConceptService, Chapter } from '../concept.service';
+import { from, Observable } from 'rxjs';
+import { ConceptService, Chapter } from '../services/concept.service';
 
 @Component({
   selector: 'app-home',
+  standalone: true, 
   imports: [CommonModule, RouterModule],
   templateUrl: './home.html',
   styleUrl: './home.css',
@@ -22,7 +23,7 @@ export class Home implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {}
 
   ngAfterViewInit(): void {
-    // Petit délai pour s'assurer que le DOM est complètement rendu
+
     setTimeout(() => {
       this.initializeCounterAnimation();
     }, 100);

@@ -6,10 +6,10 @@
       <h2>{{ concept.title }}</h2>
       <div class="action-buttons">
         <a [routerLink]="['/game', concept.id]" class="btn btn-play">
-          🎮 Jouer
+           Jouer
         </a>
         <a [routerLink]="['/edit', concept.id]" class="btn btn-edit">
-          ✏️ Modifier
+           Modifier
         </a>
         <a routerLink="/concepts" class="btn btn-back">
           ← Retour
@@ -19,13 +19,13 @@
 
     <!-- Description -->
     <div class="description-section">
-      <h3>📝 Description</h3>
+      <h3> Description</h3>
       <p>{{ concept.description }}</p>
     </div>
 
     <!-- Code blocks -->
     <div class="blocks-section">
-      <h3>💻 Blocs de code</h3>
+      <h3> Blocs de code</h3>
       <div class="blocks-container">
         <div *ngFor="let block of concept.blocks; let i = index" class="code-block">
           <span class="block-index">{{ i + 1 }}</span>
@@ -33,7 +33,7 @@
         </div>
       </div>
       <p class="block-hint">
-        💡 Ces blocs seront mélangés dans le jeu. Tu devras les remettre dans le bon ordre !
+         Ces blocs seront mélangés dans le jeu. Tu devras les remettre dans le bon ordre !
       </p>
     </div>
 
@@ -41,7 +41,7 @@
 
   <ng-template #notFound>
     <div class="not-found">
-      <h2>😕 Concept non trouvé</h2>
+      <h2> Concept non trouvé</h2>
       <p>Le concept que tu cherches n'existe pas.</p>
       <a routerLink="/concepts" class="btn btn-back">← Retour aux concepts</a>
     </div>

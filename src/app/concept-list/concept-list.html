@@ -49,7 +49,6 @@
 
               <!-- Front of card -->
               <div class="flip-card-front">
-
                 <div class="card-header">
                   <div class="card-title-wrapper">
                     <h3 class="card-title">{{ card.title }}</h3>
@@ -80,12 +79,10 @@
                     Pratiquer ce concept
                   </button>
                 </div>
-
               </div>
 
               <!-- Back of card -->
               <div class="flip-card-back">
-
                 <h4>📝 Résumé</h4>
                 <p>{{ card.summary }}</p>
 
@@ -100,13 +97,11 @@
                   (click)="toggleDetails(card.id)">
                   ← Retour
                 </button>
-
               </div>
-
             </div>
           </div>
 
-          <!-- Add Concept Card LAST -->
+          <!-- Add new concept card -->
           <a routerLink="/add" class="add-concept-card">
             <div class="add-concept-icon">+</div>
             <div class="add-concept-content">
@@ -116,27 +111,10 @@
               </p>
             </div>
           </a>
-
         </div>
-
       </section>
-
     </div>
-
-    <div class="flip-card-back">
-
-      <h4>Résumé</h4>
-      <p>{{ card.summary }}</p>
-      <button 
-        class="btn btn-details"
-        (click)="toggleDetails(card.id)">
-        Retour
-      </button>
-
-    </div>
-
   </div>
-
 </div>
 
 <app-delete-confirmation
@@ -144,5 +122,3 @@
   (confirmed)="confirmDelete()"
   (cancelled)="cancelDelete()">
 </app-delete-confirmation>
-
-

@@ -10,12 +10,8 @@ import { DeleteConfirmation } from '../delete-confirmation/delete-confirmation';
   selector: 'app-chapter-list',
   templateUrl: './concept-list.html',
   styleUrls: ['./concept-list.css'],
-<<<<<<< HEAD
-  imports: [CommonModule, RouterModule, DeleteConfirmation]
-=======
   standalone: true,
-  imports: [CommonModule, RouterModule]
->>>>>>> origin/yasmine
+  imports: [CommonModule, RouterModule, DeleteConfirmation]
 })
 export class ConceptList implements OnInit {
 
@@ -23,11 +19,8 @@ export class ConceptList implements OnInit {
   allChapters: Chapter[] = [];
   filteredChapters: Chapter[] = [];
   activeChapterId: number | null = null;
-<<<<<<< HEAD
 
 
-=======
->>>>>>> origin/yasmine
   expandedCardId: number | null = null;
 
 

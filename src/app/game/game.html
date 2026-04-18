@@ -1,10 +1,10 @@
 <div class="game-container" *ngIf="concept">
   <!-- Header with Stats -->
   <div class="game-header">
-    <h2>🎮 Jeu : {{ concept.title }}</h2>
+    <h2> Jeu : {{ concept.title }}</h2>
     <p>{{ concept.description }}</p>
     <p class="instructions">
-      👉 Glisse les blocs de code dans l'ordre correct pour assembler le programme !
+       Glisse les blocs de code dans l'ordre correct pour assembler le programme !
     </p>
     
     <!-- Game Stats -->
@@ -30,7 +30,7 @@
   <div class="game-layout">
     <!-- LEFT PANEL: Available Blocks -->
     <div class="panel source-panel">
-      <h3>📦 Blocs disponibles</h3>
+      <h3> Blocs disponibles</h3>
       
       <div
         cdkDropList
@@ -58,7 +58,7 @@
 
     <!-- RIGHT PANEL: Assembly Area -->
     <div class="panel target-panel">
-      <h3>🎯 Zone d'assemblage</h3>
+      <h3> Zone d'assemblage</h3>
       
       <div
         cdkDropList
@@ -84,7 +84,7 @@
         </div>
         
         <div *ngIf="assembledBlocks.length === 0" class="empty-placeholder">
-          <div class="placeholder-icon">👆</div>
+          <div class="placeholder-icon"></div>
           <p>Glisse les blocs ici</p>
           <p class="placeholder-hint">Commence par le premier bloc du programme</p>
         </div>
@@ -105,20 +105,20 @@
           (click)="toggleHint()"
           [disabled]="isCorrect"
         >
-          <span class="btn-icon">💡</span> Indice
+          <span class="btn-icon"></span> Indice
         </button>
         <button 
           class="btn btn-solution" 
           (click)="showSolution()"
           [disabled]="isCorrect"
         >
-          <span class="btn-icon">👁️</span> Solution
+          <span class="btn-icon"></span> Solution
         </button>
         <button 
           class="btn btn-reset" 
           (click)="resetGame()"
         >
-          <span class="btn-icon">🔄</span> Réinitialiser
+          <span class="btn-icon"></span> Réinitialiser
         </button>
       </div>
       
@@ -130,7 +130,7 @@
       <!-- Feedback Messages -->
       <div *ngIf="showFeedback" class="feedback-container">
         <div *ngIf="isCorrect" class="feedback success">
-          <div class="feedback-icon">🎉</div>
+          <div class="feedback-icon"></div>
           <h3>Bravo !</h3>
           <p>Tu as correctement assemblé le programme en {{ attempts }} tentative(s) !</p>
           <div class="success-actions">
@@ -140,14 +140,14 @@
         </div>
         
         <div *ngIf="!isCorrect && isComplete" class="feedback error">
-          <div class="feedback-icon">❌</div>
+          <div class="feedback-icon"></div>
           <h3>Pas tout à fait...</h3>
           <p>L'ordre n'est pas correct. Les blocs incorrects sont marqués en rouge.</p>
-          <p class="feedback-tip">💡 Astuce : Vérifie l'ordre logique du programme Java</p>
+          <p class="feedback-tip"> Astuce : Vérifie l'ordre logique du programme Java</p>
         </div>
         
         <div *ngIf="!isCorrect && !isComplete" class="feedback warning">
-          <div class="feedback-icon">⚠️</div>
+          <div class="feedback-icon"></div>
           <h3>Attention !</h3>
           <p>Il manque encore {{ correctBlocks.length - assembledBlocks.length }} bloc(s).</p>
           <p class="feedback-tip">Continue d'ajouter les blocs manquants !</p>

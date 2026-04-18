@@ -293,7 +293,7 @@
 }
 
 .btn-verify {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #062231b4, #4764a2c5);
   color: white;
 }
 
@@ -303,17 +303,17 @@
 }
 
 .btn-hint {
-  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  background: linear-gradient(135deg, #062231b4, #4764a2c5);
   color: white;
 }
 
 .btn-solution {
-  background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+  background: linear-gradient(135deg, #062231b4, #4764a2c5);
   color: white;
 }
 
 .btn-reset {
-  background: linear-gradient(135deg, #f59e0b, #d97706);
+  background: linear-gradient(135deg, #062231b4, #4764a2c5);
   color: white;
 }
 
