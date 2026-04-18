@@ -1,3 +1,5 @@
+<img width="1882" height="1033" alt="image" src="https://github.com/user-attachments/assets/da3c2e78-c41a-4083-a726-d041db9c1780" />
+
 # Java Concepts Learning Platform
 
 A lightweight, interactive Angular single-page application for learning and practicing Java programming concepts. This educational platform provides a structured way to explore fundamental programming concepts with examples and interactive features.
@@ -133,7 +135,7 @@ src/
 └── tsconfig.json               # TypeScript configuration
 ```
 
-## 💻 Usage
+##  Usage
 
 1. **View Concepts**: Navigate to the concept list to see all available Java topics
 2. **Learn Details**: Click on a concept to view detailed explanation and examples
@@ -167,12 +169,6 @@ ng generate component component-name
 - Check the Console tab for TypeScript compilation errors
 - Use Chrome DevTools for DOM inspection and Network analysis
 
-##  Adding Screenshots
-
-
-```markdown
-![Feature description](public/assets/screenshots/screenshot.png)
-```
 
 ##  License
 
@@ -203,13 +199,7 @@ npm run lint
 npm run format
 ```
 
-## How to add screenshots
-1. Capture the screen (Windows: `Win+Shift+S`).
-2. Save the file into `public/assets/screenshots/` (example: `home.png`).
-3. Optionally optimize the image.
-4. Add and commit the files, then push to GitHub.
 
-Example Markdown (already included above): `![Home page](public/assets/screenshots/home.png)`
 
 ## Contribution
 - Fork the repository, create a feature branch (`feature/your-feature`), make changes and open a pull request.
