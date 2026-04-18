@@ -1,5 +1,5 @@
 <img width="1887" height="1013" alt="image" src="https://github.com/user-attachments/assets/e740eb7d-c28d-4668-a98f-9958dcd75f0b" />
-
+<br><br>
 <img width="1900" height="1020" alt="image" src="https://github.com/user-attachments/assets/5f768864-691d-4656-aee5-2f794202261e" />
 
 # Java Concepts Learning Platform
