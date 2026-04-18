@@ -37,8 +37,6 @@ A lightweight, interactive Angular single-page application for learning and prac
 - **Framework**: Angular 20.3.0
 - **Language**: TypeScript 5.9.2
 - **Styling**: CSS3
-- **State Management**: RxJS
-- **Testing**: Jasmine & Karma
 - **Build Tool**: Angular CLI 20.3.5
 
 ##  Prerequisites
@@ -210,8 +208,4 @@ npm run format
 ## License
 Choose a license (e.g. MIT) and add a `LICENSE` file to the repository.
 
-## Contact
-Open an issue or contact the maintainer via their GitHub profile.
 
----
-Generated for this Angular project — feel free to edit to fit your repo details.
