@@ -2,7 +2,7 @@
 
 A lightweight, interactive Angular single-page application for learning and practicing Java programming concepts. This educational platform provides a structured way to explore fundamental programming concepts with examples and interactive features.
 
-## 📋 Project Description
+##  Project Description
 
 **Java Concepts Learning Platform** is an Angular-based web application designed to help learners understand core Java programming concepts. The application provides:
 
@@ -14,21 +14,21 @@ A lightweight, interactive Angular single-page application for learning and prac
 
 ### Key Features
 
-✨ **Learning Concepts**
+ **Learning Concepts**
 - Explore a curated collection of Java programming fundamentals
 - Each concept includes title, description, and code examples
 - Organized by chapters for structured learning
 
-🎮 **Interactive Game**
+ **Interactive Game**
 - Practice and test your understanding through interactive gameplay
 
-📝 **Concept Management**
+ **Concept Management**
 - View detailed concept information
 - Add new concepts through the concept form
 - Delete concepts with confirmation dialog
 - Real-time updates with smooth scroll animations
 
-## 🛠️ Technology Stack
+##  Technology Stack
 
 - **Framework**: Angular 20.3.0
 - **Language**: TypeScript 5.9.2
@@ -37,7 +37,7 @@ A lightweight, interactive Angular single-page application for learning and prac
 - **Testing**: Jasmine & Karma
 - **Build Tool**: Angular CLI 20.3.5
 
-## 📦 Prerequisites
+##  Prerequisites
 
 Before you begin, ensure you have the following installed:
 
@@ -51,7 +51,7 @@ node --version
 npm --version
 ```
 
-## 🚀 Getting Started
+##  Getting Started
 
 ### 1. Installation
 
@@ -108,7 +108,7 @@ npm run watch
 
 This builds the project in watch mode, automatically recompiling when files change.
 
-## 📁 Project Structure
+##  Project Structure
 
 ```
 src/
@@ -167,19 +167,18 @@ ng generate component component-name
 - Check the Console tab for TypeScript compilation errors
 - Use Chrome DevTools for DOM inspection and Network analysis
 
-## 📸 Adding Screenshots
+##  Adding Screenshots
 
-Place screenshots in `public/assets/screenshots/` and reference them:
 
 ```markdown
 ![Feature description](public/assets/screenshots/screenshot.png)
 ```
 
-## 📄 License
+##  License
 
 This project is part of an Angular learning initiative.
 
-## 🤝 Contributing
+##  Contributing
 
 To contribute improvements:
 
@@ -190,7 +189,7 @@ To contribute improvements:
 
 ---
 
-**Happy Learning!** 🎓
+**Happy Learning!** 
 - Run unit tests:
 
 ```bash
